@@ -48,6 +48,7 @@ void PrintBytes(void* mem_addr, int num_bytes) {
     }
 
     //prints only last two values of byte, otherwise it spams a bunch of fffs
+    //https://stackoverflow.com/questions/8060170/printing-hexadecimal-characters-in-c
     printf("%x ", val & 0xff);
   }
   printf("\n");
