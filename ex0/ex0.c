@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        printf("Invalid input - too many inputs");
+        printf("Invalid input - wrong number of inputs");
         return EXIT_FAILURE;
     }
     

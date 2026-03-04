@@ -4,22 +4,26 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include <dirent.h> //posix library
 
 int main(int argc, char** argv) {
-    int16_t StrLength = sizeof(argv[1]) / sizeof(char);
-    if (argv[0] == '/') {
-        StrLength--;
-        argv
+    //int16_t StrLength = strlen(argv[1]); //gets string length
+    char* dir = argv[1];
+
+    printf(dir);
+
+    DIR* dirp = opendir(dir);
+    struct dirent* file = readdir(dirp);
+
+    if (dirp == NULL) {
+        perror("Could not open directory");
+        exit(EXIT_FAILURE);
     }
-    if (argv[StrLength-1] == '/') {
-        StrLength--;
+
+    while ((file = readdir(dirp)) != NULL) {
+        // Print the name of the entry
+        printf("%s\n", file->d_name);
     }
-    char str[StrLength];
-    //char str[StrLength] = argv[1];
-    printf("%s", str);
-    if (str[0] == '/') {
-        for (int i=0; i<StrLength; i++) {
-            
-        }
-    }
+
+    return closedir(dirp);
 }
